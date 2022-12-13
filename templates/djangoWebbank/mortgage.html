@@ -1,0 +1,293 @@
+{% extends 'djangoWebbank/index.html' %}
+{% block content %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.6.4/math.js"></script>
+    <script>
+        function rangecost() {
+            let range = document.getElementById('rangeCost')
+            let cost = document.getElementById('textCost')
+            cost.value = range.value
+        }
+
+        function textcost () {
+            let range = document.getElementById('rangeCost')
+            let cost = document.getElementById('textCost')
+            range.value = cost.value
+        }
+
+        function rangedeposit () {
+            let range = document.getElementById('rangeDeposit')
+            let deposit = document.getElementById('textDeposit')
+            deposit.value = range.value
+        }
+
+        function textdeposit () {
+            let range = document.getElementById('rangeDeposit')
+            let deposit = document.getElementById('textDeposit')
+            range.value = deposit.value
+        }
+
+        function rangeterm () {
+            let range = document.getElementById('rangeTerm')
+            let term = document.getElementById('textTerm')
+            term.value = range.value
+        }
+
+        function textterm () {
+            let range = document.getElementById('rangeTerm')
+            let term = document.getElementById('textTerm')
+            range.value = term.value
+        }
+        
+        function sum_credit () {
+            let cost = document.getElementById('textCost').value
+            let deposit = document.getElementById('textDeposit').value
+            let sum = cost - deposit
+            document.getElementById('span-sum-credit').innerText=sum
+        }
+
+        function month_payment() {
+            let term = document.getElementById('textTerm').value
+            let cost = document.getElementById('textCost').value
+            let deposit = document.getElementById('textDeposit').value
+            let month_stavka = 4.9 / 12 / 100
+            console.log(term)
+            let stavka = Math.pow((1 + month_stavka), term * 12)
+            let month_payment = Math.round((cost - deposit) * month_stavka * stavka / (stavka - 1))
+            document.getElementById('span-month-payment').innerText=month_payment
+        }
+    </script>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="/" style="position: relative; color: seagreen; right: -1em">
+            <img src="/static/img/MAMONTBANK_without-text.png" width="35" height="30" class="d-inline-block align-text-top">MamontBank
+        </a>
+        <button class="navbar-toggler" type="button" data-target="#navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" style="position: relative; right: -1em">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="/" class="nav-link fs-5">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a href="/mortgage" class="nav-link fs-5">Ипотека</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/credit" class="nav-link fs-5">Кредит</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/deposit" class="nav-link fs-5">Вклад</a>
+                </li>
+            </ul>
+        </div>
+        {% if not user.is_authenticated %}
+            <a class="nav-brand" href="account/login" style="position: relative; right: 1em">
+                <i class="d-inline-block align-text-top; fa-solid fa-door-open fa-2x" style="color: seagreen"></i>
+            </a>
+        {% else %}
+            <a class="nav-brand" href="account/logout" style="position: relative;">
+                <i class="d-inline-block align-text-top; fa-solid fa-right-from-bracket fa-2x" style="color: seagreen"></i>
+            </a>
+            <a class="nav-brand" href="/profile/{{ user }}" style="position: relative; right: 6em">
+                <i class="nav-link fa-solid fa-user fa-2x" style="color: seagreen"></i>
+            </a>
+        {% endif %}
+    </nav>
+    <div class="bg-layer" style="height: 330%">
+        <div class="bg-layer-second" style="height: 100%">
+            <div class="bg-layer-third" style="height: 100%">
+                <div class="d-flex justify-content-center" style="position: relative; bottom: -10em">
+        <a class="fs-1" style="color: #00000C; text-decoration: none"><strong>Ипотека в MamontBank</strong></a>
+    </div>
+                <div class="d-flex justify-content-center" style="position: relative; bottom: -15em">
+        <a class="fs-5" style="color: #000000CC; text-decoration: none">Оформить ипотеку в <strong>MamontBank</strong>!</a>
+    </div>
+                <div class="d-flex justify-content-center" style="position: relative; top: -2em">
+                    <a class="nav-link btn btn-success btn-lg" href="#mortgage-form" style="width: 15%">Рассчитать ипотеку</a>
+                </div>
+                <div class="card-desk" style="position: relative; top: -2em">
+        <div class="card rounded-start rounded-4" style="position: relative; width: 20em; height: 15em; bottom: -20em; right: -5em">
+            <i class="card-img-top; fa-solid fa-city fa-3x" style="position: relative; right: -0.5em; bottom: -15px"></i>
+            <div class="card-body">
+                <h5 class="card-title" style="position: relative; bottom: -3em; right: -0.8em">Льготная поддержка</h5>
+                <p class="card-text" style="position: relative; bottom: -5em; right: -0.8em">Жилью ещё более доступно чем ранее!</p>
+            </div>
+        </div>
+        <div class="card rounded-4" style="position: relative; width: 20em; height: 15em; bottom: -5em; right: -29em">
+            <i class="card-img-top; fa-solid fa-percent fa-3x" style="position: relative; right: -0.5em; bottom: -15px"></i>
+            <div class="card-body">
+                <h5 class="card-title" style="position: relative; bottom: -2em">Выгодный процент</h5>
+                <p class="card-text" style="position: relative; bottom: -4em">Процент ипотеки от 4.9%</p>
+            </div>
+        </div>
+        <div class="card rounded-end rounded-4" style="position: relative; width: 20em; height: 15em; bottom: 10em; right: -53em">
+            <i class="card-img-top; fa-solid fa-calculator fa-3x" style="position: relative; right: -0.5em; bottom: -15px"></i>
+            <div class="card-body">
+                <h5 class="card-title" style="position: relative; bottom: -2em">Оценка на сайте</h5>
+                <p class="card-text" style="position: relative; bottom: -4em;">Рассчет ипотеки на сайте</p>
+            </div>
+        </div>
+    </div>
+                <div class="d-flex justify-content-center" style="position: relative; top: -5em">
+        <a class="fs-1" style="color: #00000C; text-decoration: none; position: relative; right: -6.5em"><strong>Условия и требования</strong></a>
+        <a class="fs-1" style="color: #00000C; text-decoration: none; position: relative; bottom: -1.3em; right: 5em"><strong>предоставления ипотеки</strong></a>
+    </div>
+                <div class="card-desk" style="position: relative; bottom: -2em; right: -6.5em">
+        <div class="card rounded-start rounded-5" style="position: relative; width: 30em; height: 10em">
+            <i class="card-img-top; fa-solid fa-sack-dollar fa-3x" style="position: relative; right: -0.5em; bottom: -15px"></i>
+            <div>
+                <h5 class="card-title" style="position: relative; bottom: 1.5em; right: -9em">От 1 млн до 15 млн ₽</h5>
+                <p class="card-text" style="position: relative; right: -7em; top: -1em"><strong>-</strong> Сумма ипотеки до 15 млн ₽</p>
+                <p class="card-text" style="position: relative; right: -7em; top: -1em"><strong>-</strong> Первоначальный взнос 16% от</p>
+                <p class="card-text" style="position: relative; right: -7.7em; top: -2em">стоимости квартиры</p>
+            </div>
+        </div>
+        <div class="card rounded-end rounded-5" style="position: relative; width: 30em; height: 10em; bottom: 10em; right: -35em">
+            <i class="card-img-top; fa-solid fa-person-cane fa-3x" style="position: relative; right: -0.5em; bottom: -15px"></i>
+            <div>
+                <h5 class="card-title" style="position: relative; bottom: 1.5em; right: -12em">До 25 лет</h5>
+                <p class="card-text" style="position:relative; right: -7em; top: -1em"><strong>-</strong> Выбирайте платеж и срок ипотеки</p>
+                <p class="card-text" style="position: relative; right: -7em; top: -1em"><strong>-</strong> Срок от 1 года до 25 лет</p>
+            </div>
+        </div>
+        <div class="card rounded-top rounded-5" style="position: relative; width: 30em; height: 10em; top: -5em; right: -18em">
+            <i class="card-img-top fa-solid fa-user fa-3x" style="position: relative; right: -0.5em; bottom: -15px"></i>
+            <div>
+                <h5 class="card-title" style="position: relative; right: -8em; bottom: 1.5em">Требования к заемщику</h5>
+                <p class="card-text" style="position: relative; right: -7em; top: -1em"><strong>-</strong> Возраст от 18 до 50 лет включительно</p>
+                <p class="card-text" style="position: relative; right: -7em; top: -2em"><strong>-</strong> Гражданство РФ</p>
+                <p class="card-text" style="position: relative; right: -7em; top: -3em"><strong>-</strong> Нет действующей ипотеки</p>
+            </div>
+        </div>
+    </div>
+                <div class="d-flex justify-content-center" style="position: relative; bottom: -3em">
+                    <a class="fs-1" style="color: #00000C; text-decoration: none; position: relative; right: -7em"><strong>Рассчитайте условия</strong></a>
+                    <a class="fs-1" style="color: #00000C; text-decoration: none; position: relative; bottom: -1.3em; right: 5em"><strong>на ипотечном калькуляторе</strong></a>
+                </div>
+                <div class="card shadow-lg p-3 mb-5 bg-body rounded" style="position: relative; width: 50%; height: 18.5em; right: -20em; bottom: -10em">
+                    <div class="card-body">
+                        <form>
+                            <fieldset>
+                                <legend>Цена недвижимости</legend>
+                                <input type="range" step="100000" min="1000000" max="15000000" id="rangeCost" value="3500000" oninput="rangecost(), sum_credit(), month_payment()">
+                                <input type="text" maxlength="7" id="textCost" value="3500000" oninput="textcost(), sum_credit(), month_payment()">
+                            </fieldset>
+                            <fieldset>
+                                <legend>Первоначальный взнос</legend>
+                                <input type="range" step="10000" min="0" max="10000000" id="rangeDeposit" value="1000000" oninput="rangedeposit(), sum_credit(), month_payment()">
+                                <input type="text" maxlength="7" id="textDeposit" value="1000000" oninput="textdeposit(), sum_credit(), month_payment()">
+                            </fieldset>
+                            <fieldset>
+                                <legend>Срок</legend>
+                                <input type="range" min="1" max="25" id="rangeTerm" value="5" oninput="rangeterm(), month_payment()">
+                                <input type="text" maxlength="2" id="textTerm" value="5" oninput="textterm(), month_payment()">
+                            </fieldset>
+                        </form>
+                        <div class="d-flex justify-content-center fs-3">
+                            <h5 style="position: relative; bottom: 10.5em; right: -8.5em">Сумма кредита</h5>
+                        </div>
+                        <div class="d-flex justify-content-center fs-3" style="position: relative; bottom: 8.7em; right: -10.5em">
+                            <span id="span-sum-credit" style="position: relative; right: 4.5em; bottom: -1em">2500000</span>
+                            <h2 style="position: relative; right: 3.5em; bottom: -0.9em">₽</h2>
+                        </div>
+                        <div class="d-flex justify-content-center fs-3" style="position: relative; bottom: 7.8em; right: -6em">
+                            <h5>Ежемесячный платеж</h5>
+                        </div>
+                        <div class="d-flex justify-content-center fs-3" style="position: relative; bottom: 8.8em; right: -10.5em">
+                            <span id="span-month-payment" style="position: relative; right: 4.5em; bottom: -1em">0</span>
+                            <h2 style="position: relative; right: 3.5em; bottom: -0.9em">₽</h2>
+                        </div>
+                        <div class="d-flex justify-content-center fs-3" style="position: relative; bottom: 7.7em; right: -6em">
+                            <h5>Ставка</h5>
+                        </div>
+                        <div class="d-flex justify-content-center" style="position: relative; bottom: 13.7em; right: -10.5em">
+                            <h2>4.9%</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center" id="mortgage-form" style="position: relative; bottom: -12em">
+                    <a class="fs-1" style="color: #00000C; text-decoration: none; position: relative; right: -4em"><strong>Откройте ипотеку</strong></a>
+                    <a class="fs-1" style="color: #00000C; text-decoration: none; position: relative; bottom: -1.3em; right: 4em"><strong>в Mamont Bank</strong></a>
+                </div>
+                <div class="card shadow-lg p-3 mb-5 bg-body rounded" style="position: relative; width: 50%; height: 29em; right: -20em; bottom: -20em">
+                    <div class="card-body">
+                        <form method="post">
+                            <h4 class="card-title" style="top: -0.5em">Заполните форму</h4>
+                            {% load static %}
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <h4 class="card-title" style="position: relative; top: -0.5em">Контактная информация</h4>
+                            {{ information_form.as_p }}
+                            <button class="btn btn-success btn-lg" type="submit" name="next_mortgage">Далее</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <footer class="text-center text-lg-start bg-light text-muted" style="position: relative; bottom: -175em">
+                    <section class="d-flex justify-content-center justify-content-lg-bettween p-4 border-bottom">
+                        <div class="me-5 d-none d-lg-block">
+                            <span>Follow us:</span>
+                        </div>
+                        <div>
+                            <a href="" class="me-4 text-reset">
+                                <i class="fa-brands fa-discord"></i>
+                            </a>
+                            <a href="" class="me-4 text-reset">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                            <a href="" class="me-4 text-reset">
+                                <i class="fa-brands fa-twitter"></i>
+                            </a>
+                            <a href="" class="me-4 text-reset">
+                                <i class="fa-brands fa-paypal"></i>
+                            </a>
+                            <a href="" class="me-4 text-reset">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                        </div>
+                    </section>
+                    <section>
+                        <div class="container text-center text-md-start mt-5">
+                            <div class="row mt-3">
+                                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4" style="position: relative; bottom: 0.5em">
+                                    <h6 class="text-uppercase fw-bold mb-4">
+                                        <img src="/static/img/MAMONTBANK_without-text-grey.png" width="10%"></img>
+                                    </h6>
+                                    <p>
+                                        Here you can use rows and columns to organize your footer content. Lorem ipsum
+                                        dolor sit amet, consectetur adipisicing elit.
+                                    </p>
+                                </div>
+                                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                                    <h6 class="text-uppercase fw-bold mb-4">Useful links</h6>
+                                    <p>
+                                        <a href="/" class="text-reset">Home</a>
+                                    </p>
+                                    <p>
+                                        <a href="/mortgage" class="text-reset">Ипотека</a>
+                                    </p>
+                                    <p>
+                                        <a href="/credit" class="text-reset">Кредит</a>
+                                    </p>
+                                    <p>
+                                        <a href="/deposit" class="text-reset">Вклад</a>
+                                    </p>
+                                </div>
+                                <div class="col-md-4 col-xl-3 mx-auto mb-md-0 mb-4">
+                                    <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                                    <p><i class="fas fa-home me-3"></i>Moskow, 10010, RU</p>
+                                    <p><i class="fas fa-envelope me-3"></i>info@example.com</p>
+                                    <p><i class="fas fa-phone me-3"></i>+ 7 495 111 011 11</p>
+                                    <p><i class="fas fa-print me-3"></i>+ 7 495 111 011 12</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="text-center p-4" style="background-color: black"> © 2022 Copyright:
+                        <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MamontBank.com</a>
+                    </div>
+                </footer>
+    </div>
+
+{% endblock %}
