@@ -1,0 +1,43 @@
+{% extends 'registration/profile.html' %}
+{% block content %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav" style="position: relative; right: -28.5em">
+                <li class="nav-item">
+                    <a href="/profile/{{ user }}" class="nav-link fs-5"><strong>Счет</strong></a>
+                </li>
+                <li class="nav-item">
+                    <a href="/profile/{{ user }}/credits" class="nav-link fs-5">Кредиты</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/profile/{{ user }}/mortgage" class="nav-link fs-5">Ипотека</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/profile/{{ user }}/deposits" class="nav-link fs-5">Вклады</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="d-flex justify-content-end">
+        <a class="fs-3" style="text-decoration: none; color: #00000C; position: relative; right: 9em; bottom: -2em;"><strong>Для вас</strong></a>
+    </div>
+    <div class="card-desk" style="position: relative; bottom: -5em; right: -45em">
+        <div class="card rounded-4" style="width: 12em; height: 8em">
+            <h5 style="position: relative; bottom: -1em; right: -2.8em">Ипотека</h5>
+            <a href="/mortgage" class="btn btn-success" style="width: 8em; height: 2.5em; position: relative; bottom: -2.5em; right: -2em">Оформить</a>
+        </div>
+        <div class="card rounded-4" style="width: 12em; height: 8em; position: relative; bottom: -3em">
+            <h5 style="position: relative; bottom: -1em; right: -3.6em">Счет</h5>
+            <a href="/" class="btn btn-success" style="width: 8em; height: 2.5em; position: relative; bottom: -2.5em; right: -2em">Оформить</a>
+        </div>
+        <div class="card rounded-4" style="width: 12em; height: 8em; position: relative; right: -15em; top: -16em">
+            <h5 style="position: relative; bottom: -1em; right: -3em">Кредит</h5>
+            <a href="/credit" class="btn btn-success" style="width: 8em; height: 2.5em; position: relative; bottom: -2.5em; right: -2em">Оформить</a>
+        </div>
+        <div class="card rounded-4" style="width: 12em; height: 8em; position: relative; right: -15em; top: -13em">
+            <h5 style="position: relative; bottom: -1em; right: -3.3em">Вклад</h5>
+            <a href="/deposit" class="btn btn-success" style="width: 8em; height: 2.5em; position: relative; bottom: -2.5em; right: -2em">Оформить</a>
+        </div>
+    </div>
+
+{% endblock %}

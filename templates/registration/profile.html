@@ -1,0 +1,124 @@
+{% load static %}
+<!doctype html>
+<html lang="ru" style="overflow-x: hidden">
+
+<head>
+    <meta charset="utf-8">
+    <title>TestPage</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="/static/css/style.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/f3e9e045a4.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="/" style="position: relative; color: seagreen; right: -1em">
+            <img src="/static/img/MAMONTBANK_without-text.png" width="35" height="30" class="d-inline-block align-text-top">MamontBank
+        </a>
+        <button class="navbar-toggler" type="button" data-target="#navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" style="position: relative; right: -1em">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a href="/" class="nav-link fs-5">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/mortgage" class="nav-link fs-5">Ипотека</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/credit" class="nav-link fs-5">Кредит</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/deposit" class="nav-link fs-5">Вклад</a>
+                </li>
+            </ul>
+        </div>
+        <a class="nav-brand" href="/account/logout" style="position: relative; right: 1em">
+            <i class="d-inline-block align-text-top; fa-solid fa-right-from-bracket fa-2x" style="color: seagreen"></i>
+        </a>
+    </nav>
+
+    <div class="bg-layer" style="height: 100%">
+        <div class="bg-layer-second" style="height: 100%">
+            <div class="bg-layer-third" style="height: 100%">
+
+                {% block content %}
+
+                {% endblock %}
+
+            </div>
+        </div>
+        <footer class="text-center text-lg-start bg-light text-muted" style="position: relative; bottom: -50em">
+                    <section class="d-flex justify-content-center justify-content-lg-bettween p-4 border-bottom">
+                        <div class="me-5 d-none d-lg-block">
+                            <span>Follow us:</span>
+                        </div>
+                        <div>
+                            <a href="" class="me-4 text-reset">
+                                <i class="fa-brands fa-discord"></i>
+                            </a>
+                            <a href="" class="me-4 text-reset">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                            <a href="" class="me-4 text-reset">
+                                <i class="fa-brands fa-twitter"></i>
+                            </a>
+                            <a href="" class="me-4 text-reset">
+                                <i class="fa-brands fa-paypal"></i>
+                            </a>
+                            <a href="" class="me-4 text-reset">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                        </div>
+                    </section>
+                    <section>
+                        <div class="container text-center text-md-start mt-5">
+                            <div class="row mt-3">
+                                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4" style="position: relative; bottom: 0.5em">
+                                    <h6 class="text-uppercase fw-bold mb-4">
+                                        <img src="/static/img/MAMONTBANK_without-text-grey.png" width="10%"></img>
+                                    </h6>
+                                    <p>
+                                        Here you can use rows and columns to organize your footer content. Lorem ipsum
+                                        dolor sit amet, consectetur adipisicing elit.
+                                    </p>
+                                </div>
+                                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                                    <h6 class="text-uppercase fw-bold mb-4">Useful links</h6>
+                                    <p>
+                                        <a href="/" class="text-reset">Home</a>
+                                    </p>
+                                    <p>
+                                        <a href="/mortgage" class="text-reset">Ипотека</a>
+                                    </p>
+                                    <p>
+                                        <a href="/credit" class="text-reset">Кредит</a>
+                                    </p>
+                                    <p>
+                                        <a href="/deposit" class="text-reset">Вклад</a>
+                                    </p>
+                                </div>
+                                <div class="col-md-4 col-xl-3 mx-auto mb-md-0 mb-4">
+                                    <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                                    <p><i class="fas fa-home me-3"></i>Moskow, 10010, RU</p>
+                                    <p><i class="fas fa-envelope me-3"></i>info@example.com</p>
+                                    <p><i class="fas fa-phone me-3"></i>+ 7 495 111 011 11</p>
+                                    <p><i class="fas fa-print me-3"></i>+ 7 495 111 011 12</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="text-center p-4" style="background-color: black"> © 2022 Copyright:
+                        <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MamontBank.com</a>
+                    </div>
+                </footer>
+    </div>
+
+</body>
+
+</html>
